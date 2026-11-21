@@ -1,0 +1,180 @@
+---
+import { negocio, whatsappLink } from '../data/negocio.js';
+import { url } from '../utils/url.js';
+
+const ano = new Date().getFullYear();
+const links = [
+  { href: '#servicos', rotulo: 'Serviços' },
+  { href: '#galeria', rotulo: 'Galeria' },
+  { href: '#depoimentos', rotulo: 'Depoimentos' },
+  { href: '#onde-fica', rotulo: 'Onde fica' },
+];
+---
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a class="brand" href={url('/')} aria-label="Califórnia Barbearia — início">
+        <img src={url('/logo.svg')} alt="" width="44" height="44" />
+        <span class="brand__text">
+          <span class="brand__name">CALIFORNIA</span>
+          <span class="brand__sub">BARBEARIA</span>
+        </span>
+      </a>
+      <p>A barbearia que transforma você.</p>
+      <a
+        class="footer__wa"
+        href={whatsappLink()}
+        target="_blank"
+        rel="noopener"
+      >
+        {negocio.telefoneDisplay}
+      </a>
+    </div>
+
+    <nav class="footer__nav" aria-label="Rodapé">
+      {links.map((link) => <a href={link.href}>{link.rotulo}</a>)}
+      <a href={negocio.instagramUrl} target="_blank" rel="noopener">Instagram</a>
+      <a href={negocio.googleReviewsUrl} target="_blank" rel="noopener">Google</a>
+    </nav>
+
+    <div class="footer__horarios">
+      <span class="footer__rotulo">Horários</span>
+      {negocio.horarios.map((h) => (
+        <span class="footer__linha">
+          <span>{h.dias}</span>
+          <span>{h.horas}</span>
+        </span>
+      ))}
+    </div>
+
+    <div class="footer__endereco">
+      <span class="footer__rotulo">Endereço</span>
+      <p>{negocio.endereco}</p>
+      <p>{negocio.bairro} · {negocio.cidade}/{negocio.estado}</p>
+      <p>{negocio.cep}</p>
+    </div>
+  </div>
+
+  <div class="container footer__base">
+    <span>© {ano} {negocio.nome}</span>
+    <span>Site por Tchê Sites · Projeto demonstrativo</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--carvao);
+    border-top: 1px solid var(--linha);
+    padding-top: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 0.7fr 1.2fr 1fr;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .footer__brand p {
+    margin-top: 1rem;
+    max-width: 28ch;
+    color: var(--cinza);
+    font-size: 0.92rem;
+  }
+
+  .footer__wa {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-family: var(--fonte-dados);
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    color: var(--lima);
+  }
+
+  .footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: flex-start;
+  }
+
+  .footer__nav a {
+    font-family: var(--fonte-dados);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cinza);
+  }
+
+  .footer__nav a:hover {
+    color: var(--lima);
+  }
+
+  .footer__rotulo {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-family: var(--fonte-dados);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lima);
+  }
+
+  .footer__horarios {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .footer__linha {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 230px;
+    font-family: var(--fonte-dados);
+    font-size: 0.64rem;
+    color: var(--cinza);
+  }
+
+  .footer__endereco p {
+    max-width: 24ch;
+    color: var(--cinza);
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .footer__base {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.2rem;
+    border-top: 1px solid rgba(216, 255, 62, 0.14);
+    font-family: var(--fonte-dados);
+    font-size: 0.56rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cinza);
+  }
+
+  @media (max-width: 900px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer__base {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+  }
+</style>

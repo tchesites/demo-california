@@ -1,0 +1,202 @@
+---
+import { whatsappLink } from '../data/negocio.js';
+import { url } from '../utils/url.js';
+
+const links = [
+  { href: '#servicos', rotulo: 'Serviços' },
+  { href: '#galeria', rotulo: 'Galeria' },
+  { href: '#depoimentos', rotulo: 'Depoimentos' },
+  { href: '#onde-fica', rotulo: 'Onde fica' },
+];
+---
+
+<header class="header" data-header>
+  <div class="header__inner container">
+    <a class="brand" href={url('/')} aria-label="Califórnia Barbearia — início">
+      <img src={url('/logo.svg')} alt="" width="40" height="40" />
+      <span class="brand__text">
+        <span class="brand__name">CALIFORNIA</span>
+        <span class="brand__sub">BARBEARIA</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      {links.map((link) => <a href={link.href}>{link.rotulo}</a>)}
+    </nav>
+
+    <a
+      class="btn btn--small header__cta"
+      href={whatsappLink()}
+      target="_blank"
+      rel="noopener"
+    >
+      Agendar
+      <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" />
+      </svg>
+    </a>
+
+    <details class="menu">
+      <summary aria-label="Abrir menu">Menu</summary>
+      <nav aria-label="Menu do celular">
+        {links.map((link) => <a href={link.href}>{link.rotulo}</a>)}
+        <a class="menu__cta" href={whatsappLink()} target="_blank" rel="noopener">
+          Agendar no WhatsApp
+        </a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script is:inline>
+  const menu = document.querySelector('.menu');
+  if (menu) {
+    const summary = menu.querySelector('summary');
+    const fechar = () => {
+      menu.open = false;
+      summary.setAttribute('aria-label', 'Abrir menu');
+    };
+
+    menu.querySelectorAll('nav a').forEach((link) => {
+      link.addEventListener('click', fechar);
+    });
+
+    menu.addEventListener('toggle', () => {
+      summary.setAttribute('aria-label', menu.open ? 'Fechar menu' : 'Abrir menu');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        fechar();
+        summary.focus();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (menu.open && !menu.contains(event.target)) {
+        fechar();
+      }
+    });
+  }
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8, 9, 10, 0.72);
+    border-bottom: 1px solid transparent;
+    backdrop-filter: blur(14px);
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .header.is-scrolled {
+    background: rgba(8, 9, 10, 0.96);
+    border-bottom-color: var(--linha);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    min-height: var(--header-h);
+  }
+
+  .btn--small {
+    min-height: 42px;
+    padding: 0.7rem 0.95rem;
+    font-size: 0.64rem;
+  }
+
+  .header__cta {
+    margin-left: 0.4rem;
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.6rem;
+    margin-left: auto;
+  }
+
+  .nav a {
+    font-family: var(--fonte-dados);
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cinza);
+    transition: color 0.15s ease;
+  }
+
+  .nav a:hover {
+    color: var(--lima);
+  }
+
+  .menu {
+    display: none;
+    position: relative;
+    margin-left: auto;
+  }
+
+  .menu summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--linha-forte);
+    color: var(--osso);
+    font-family: var(--fonte-dados);
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .menu nav {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.6rem);
+    min-width: 220px;
+    display: grid;
+    background: var(--carvao);
+    border: 1px solid var(--linha);
+    padding: 0.5rem;
+  }
+
+  .menu nav a {
+    padding: 0.8rem 0.7rem;
+    border-bottom: 1px solid rgba(216, 255, 62, 0.12);
+    font-family: var(--fonte-dados);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--osso);
+  }
+
+  .menu nav a:last-child {
+    border-bottom: 0;
+  }
+
+  .menu__cta {
+    color: var(--lima) !important;
+  }
+
+  @media (max-width: 900px) {
+    .nav,
+    .header__cta {
+      display: none;
+    }
+
+    .menu {
+      display: block;
+    }
+
+    .header__inner {
+      gap: 1rem;
+    }
+  }
+</style>

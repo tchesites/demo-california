@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" role="img" aria-label="Califórnia Barbearia">
+  <circle cx="50" cy="50" r="50" fill="#08090A"/>
+  <g fill="none" stroke="#F3F1EA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="35" cy="30" r="7"/>
+    <circle cx="65" cy="30" r="7"/>
+    <path d="M38.5 36.5 50 52 61.5 36.5"/>
+    <path d="M50 52 35.5 75"/>
+    <path d="M50 52 64.5 75"/>
+  </g>
+  <circle cx="50" cy="86" r="3.4" fill="#FFC93C"/>
+</svg>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { url } from '../utils/url.js';
+---
+
+<BaseLayout title="Página não encontrada" noindex={true}>
+  <section class="section erro">
+    <div class="container">
+      <span class="kicker">Erro 404</span>
+      <h1>Essa página saiu para cortar o cabelo.</h1>
+      <p>O link que você tentou não existe mais. Volta para a porta de entrada.</p>
+      <a class="btn" href={url('/')}>Voltar para a Califórnia</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .erro {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .erro h1 {
+    max-width: 14ch;
+    margin: 1rem 0;
+    font-family: var(--fonte-display);
+    font-size: var(--t-h2);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .erro p {
+    max-width: 42ch;
+    margin-bottom: 2rem;
+    color: var(--cinza);
+  }
+</style>

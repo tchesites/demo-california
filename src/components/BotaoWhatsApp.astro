@@ -1,0 +1,49 @@
+---
+import { whatsappLink } from '../data/negocio.js';
+---
+
+<a
+  class="wa-fixo"
+  href={whatsappLink()}
+  target="_blank"
+  rel="noopener"
+  aria-label="Agendar no WhatsApp"
+>
+  <span>Agendar no WhatsApp</span>
+  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" />
+  </svg>
+</a>
+
+<style>
+  .wa-fixo {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.95rem 1rem calc(0.95rem + env(safe-area-inset-bottom));
+    background: var(--lima);
+    border-top: 1px solid var(--preto);
+    color: var(--preto);
+    font-family: var(--fonte-dados);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .wa-fixo svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  @media (max-width: 900px) {
+    .wa-fixo {
+      display: flex;
+    }
+  }
+</style>

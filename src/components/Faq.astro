@@ -1,0 +1,132 @@
+---
+import { faq, whatsappLink } from '../data/negocio.js';
+---
+
+<section class="section faq" id="faq">
+  <div class="container faq__grid">
+    <div class="faq__head" data-reveal>
+      <span class="kicker">Dúvidas</span>
+      <h2>Antes de sentar.</h2>
+      <p>
+        O que mais chega no WhatsApp, respondido aqui. Se ficar qualquer coisa,
+        é só chamar.
+      </p>
+      <a class="faq__link" href={whatsappLink()} target="_blank" rel="noopener">
+        Ainda com dúvida? Chama no WhatsApp
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="faq__lista">
+      {faq.map((item) => (
+        <details data-reveal>
+          <summary>
+            {item.pergunta}
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </summary>
+          <p>{item.resposta}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: var(--preto);
+  }
+
+  .faq__grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .faq h2 {
+    margin: 0.8rem 0 1rem;
+    font-family: var(--fonte-display);
+    font-size: var(--t-h2);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .faq__head p {
+    max-width: 38ch;
+    color: var(--cinza);
+  }
+
+  .faq__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 1.4rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid var(--linha-forte);
+    font-family: var(--fonte-dados);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lima);
+  }
+
+  .faq__link svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .faq__lista {
+    border-top: 1px solid var(--linha);
+  }
+
+  .faq details {
+    border-bottom: 1px solid var(--linha);
+  }
+
+  .faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    font-size: 1.02rem;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__icon {
+    flex: none;
+    font-family: var(--fonte-dados);
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--lima);
+    transition: transform 0.2s ease;
+  }
+
+  .faq details[open] .faq__icon {
+    transform: rotate(45deg);
+  }
+
+  .faq details p {
+    max-width: 62ch;
+    padding: 0 2rem 1.3rem 0;
+    color: var(--cinza);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 820px) {
+    .faq__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

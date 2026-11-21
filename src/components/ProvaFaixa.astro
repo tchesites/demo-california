@@ -1,0 +1,95 @@
+---
+import { negocio } from '../data/negocio.js';
+
+const nota = negocio.notaGoogle.toFixed(1).replace('.', ',');
+const itens = [
+  { valor: nota, rotulo: 'nota no Google' },
+  { valor: String(negocio.totalAvaliacoes), rotulo: 'avaliações' },
+  { valor: 'SEG–SÁB', rotulo: 'domingo fechado', texto: true },
+  { valor: 'CENTRO', rotulo: 'Canoas', texto: true },
+];
+---
+
+<section class="prova" aria-label="Prova social">
+  <div class="container prova__grid">
+    {itens.map((item) => (
+      <div class="prova__item">
+        <span class:list={['prova__valor', 'num', { 'prova__valor--texto': item.texto }]}>
+          {item.valor}
+        </span>
+        <span class="prova__rotulo">{item.rotulo}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .prova {
+    background: var(--carvao);
+    border-bottom: 1px solid var(--linha);
+  }
+
+  .prova__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .prova__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.6rem clamp(1rem, 3vw, 2.2rem);
+    border-left: 1px solid var(--linha);
+  }
+
+  .prova__item:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .prova__valor {
+    font-size: clamp(1.5rem, 3vw, 2.35rem);
+    line-height: 1;
+    color: var(--osso);
+    white-space: nowrap;
+  }
+
+  .prova__valor--texto {
+    padding-top: 0.45rem;
+    font-size: clamp(1rem, 1.8vw, 1.45rem);
+    letter-spacing: 0.04em;
+  }
+
+  .prova__rotulo {
+    font-family: var(--fonte-dados);
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cinza);
+  }
+
+  @media (max-width: 760px) {
+    .prova__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .prova__item {
+      border-left: 0;
+      border-top: 1px solid var(--linha);
+      padding: 1.2rem 0;
+    }
+
+    .prova__item:nth-child(odd) {
+      padding-right: 1rem;
+    }
+
+    .prova__item:nth-child(even) {
+      padding-left: 1rem;
+      border-left: 1px solid var(--linha);
+    }
+
+    .prova__item:nth-child(-n + 2) {
+      border-top: 0;
+    }
+  }
+</style>

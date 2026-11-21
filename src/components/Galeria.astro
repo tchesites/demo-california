@@ -1,0 +1,257 @@
+---
+import { Image } from 'astro:assets';
+import { negocio } from '../data/negocio.js';
+import fade from '../assets/fotos/fade-barba.jpg';
+import platinado from '../assets/fotos/platinado.jpg';
+import barba from '../assets/fotos/barba-prateada.jpg';
+import fachada from '../assets/fotos/fachada-dia.jpg';
+
+const fotos = [
+  {
+    src: fade,
+    alt: 'Corte fade com acabamento na máquina, visto de perfil',
+    legenda: 'Fade + barba',
+    classe: 'foto--alta',
+  },
+  {
+    src: platinado,
+    alt: 'Corte platinado com laterais baixas',
+    legenda: 'Platinado',
+    classe: '',
+  },
+  {
+    src: barba,
+    alt: 'Barba grisalha alinhada',
+    legenda: 'Barba prateada',
+    classe: '',
+  },
+  {
+    src: fachada,
+    alt: 'Interior da Califórnia Barbearia, com cadeiras e parede de tijolo',
+    legenda: 'A casa',
+    classe: 'foto--larga',
+  },
+];
+---
+
+<section class="section galeria" id="galeria">
+  <div class="container">
+    <div class="galeria__head" data-reveal>
+      <div class="sec-head">
+        <span class="kicker">Transformações</span>
+        <h2>O resultado fala.</h2>
+        <p>
+          Fade, barba desenhada, platinado. O antes e depois é o que sai da
+          cadeira — e o que faz o cliente voltar.
+        </p>
+      </div>
+
+      <a
+        class="galeria__link"
+        href={negocio.instagramUrl}
+        target="_blank"
+        rel="noopener"
+      >
+        Ver mais no Instagram
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="galeria__grid">
+      {fotos.map((foto, indice) => (
+        <figure class:list={['foto', foto.classe]} data-reveal>
+          <Image
+            src={foto.src}
+            alt={foto.alt}
+            widths={[420, 640, 900, 1200]}
+            sizes="(max-width: 700px) 92vw, (max-width: 1000px) 46vw, 38vw"
+            loading="lazy"
+            format="webp"
+          />
+          <figcaption>
+            <span class="foto__num num">{String(indice + 1).padStart(2, '0')}</span>
+            <span>{foto.legenda}</span>
+          </figcaption>
+          <span class="foto__corner" aria-hidden="true"></span>
+        </figure>
+      ))}
+    </div>
+
+    <p class="galeria__credito">
+      Fotos:
+      <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .galeria {
+    background: var(--preto);
+    border-bottom: 1px solid var(--linha);
+  }
+
+  .galeria__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .galeria__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex: none;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--linha-forte);
+    font-family: var(--fonte-dados);
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lima);
+  }
+
+  .galeria__link svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .galeria__credito {
+    margin-top: 1rem;
+    font-family: var(--fonte-dados);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cinza);
+  }
+
+  .galeria__credito a {
+    color: var(--lima);
+    border-bottom: 1px solid var(--linha-forte);
+  }
+
+  .galeria__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: clamp(190px, 22vw, 270px);
+    gap: 0.7rem;
+  }
+
+  .foto {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    background: var(--carvao);
+  }
+
+  .foto--alta {
+    grid-column: span 5;
+    grid-row: span 2;
+  }
+
+  .foto:nth-child(2) {
+    grid-column: span 4;
+  }
+
+  .foto:nth-child(3) {
+    grid-column: span 3;
+  }
+
+  .foto--larga {
+    grid-column: span 7;
+  }
+
+  .foto :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.05) saturate(0.95);
+    transition: transform 0.6s ease;
+  }
+
+  .foto:hover :global(img) {
+    transform: scale(1.035);
+  }
+
+  .foto figcaption {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+    background: linear-gradient(180deg, transparent, rgba(8, 9, 10, 0.82));
+    font-family: var(--fonte-dados);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--osso);
+  }
+
+  .foto__num {
+    color: var(--lima);
+  }
+
+  .foto__corner {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.55rem;
+    width: 18px;
+    height: 18px;
+    border-top: 2px solid var(--osso);
+    border-right: 2px solid var(--osso);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 900px) {
+    .galeria__head {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .galeria__grid {
+      grid-auto-rows: clamp(170px, 30vw, 230px);
+    }
+
+    .foto--alta {
+      grid-column: span 7;
+    }
+
+    .foto:nth-child(2) {
+      grid-column: span 5;
+    }
+
+    .foto:nth-child(3) {
+      grid-column: span 5;
+    }
+
+    .foto--larga {
+      grid-column: span 7;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .galeria__grid {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 200px;
+    }
+
+    .foto--alta {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .foto:nth-child(2),
+    .foto:nth-child(3) {
+      grid-column: span 1;
+    }
+
+    .foto--larga {
+      grid-column: span 2;
+    }
+  }
+</style>

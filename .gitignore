@@ -1,0 +1,21 @@
+# Dependências e build
+node_modules/
+dist/
+.astro/
+
+# Ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Logs e cache
+*.log
+.cache/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ferramentas de trabalho
+.superpowers/

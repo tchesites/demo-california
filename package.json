@@ -1,0 +1,19 @@
+{
+  "name": "demo-california",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "check": "node scripts/check-build.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.12.0"
+  }
+}

@@ -1,0 +1,83 @@
+---
+import { servicos, whatsappLink } from '../data/negocio.js';
+import ServicoCard from './ServicoCard.astro';
+
+const spans = [7, 5, 7, 5, 12];
+---
+
+<section class="section paper" id="servicos">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <span class="kicker">Serviços</span>
+      <h2>O corte é o começo.</h2>
+      <p>
+        Cinco caminhos para sair diferente de quando entrou. Os valores são ponto
+        de partida; o fechamento e a tabela completa ficam no WhatsApp.
+      </p>
+    </div>
+
+    <div class="servicos__grid">
+      {servicos.map((servico, indice) => (
+        <ServicoCard servico={servico} indice={indice} span={spans[indice]} />
+      ))}
+    </div>
+
+    <div class="servicos__nota" data-reveal>
+      <span>Tabela completa e horários no WhatsApp.</span>
+      <a href={whatsappLink()} target="_blank" rel="noopener">
+        Chamar o Beto
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .servicos__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0.8rem;
+  }
+
+  .servicos__nota {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(8, 9, 10, 0.2);
+    font-family: var(--fonte-dados);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .servicos__nota a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--preto);
+    border-bottom: 1px solid var(--preto);
+    padding-bottom: 0.2rem;
+  }
+
+  .servicos__nota a:hover {
+    color: var(--tijolo);
+    border-color: var(--tijolo);
+  }
+
+  .servicos__nota svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  @media (max-width: 900px) {
+    .servicos__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

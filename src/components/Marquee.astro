@@ -1,0 +1,72 @@
+---
+const itens = ['Corte', 'Barba', 'Platinado', 'Infantil', 'Corte', 'Barba', 'Platinado', 'Infantil'];
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__grupo">
+      {itens.map((item) => (
+        <>
+          <span>{item}</span>
+          <span class="marquee__dot">·</span>
+        </>
+      ))}
+    </div>
+    <div class="marquee__grupo">
+      {itens.map((item) => (
+        <>
+          <span>{item}</span>
+          <span class="marquee__dot">·</span>
+        </>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .marquee {
+    overflow: hidden;
+    background: var(--lima);
+    color: var(--preto);
+    border-bottom: 1px solid var(--preto);
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 34s linear infinite;
+  }
+
+  .marquee__grupo {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 0.72rem 0;
+    padding-right: 1.4rem;
+    white-space: nowrap;
+  }
+
+  .marquee__grupo span:not(.marquee__dot) {
+    font-family: var(--fonte-display);
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .marquee__dot {
+    color: rgba(8, 9, 10, 0.5);
+    font-size: 0.9rem;
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,184 @@
+---
+import { Image } from 'astro:assets';
+import { whatsappLink } from '../data/negocio.js';
+import atendimento from '../assets/fotos/atendimento.jpg';
+---
+
+<section class="exp" id="experiencia">
+  <div class="container exp__grid">
+    <div class="exp__foto" data-reveal>
+      <Image
+        src={atendimento}
+        alt="Barbeiro cortando o cabelo de um cliente na Califórnia Barbearia"
+        widths={[420, 640, 900]}
+        sizes="(max-width: 900px) 92vw, 46vw"
+        loading="lazy"
+        format="webp"
+      />
+      <span class="exp__tag">Beto · barbeiro desde 2018</span>
+      <span class="exp__corner exp__corner--tl"></span>
+      <span class="exp__corner exp__corner--br"></span>
+    </div>
+
+    <div class="exp__copy" data-reveal>
+      <span class="kicker">A experiência</span>
+      <h2>Corte, resenha e atendimento de qualidade.</h2>
+      <p>
+        O Beto Ferraz é barbeiro desde 2018 e comanda a Califórnia. Aqui o
+        atendimento é próximo, o ambiente é limpo e a conversa faz parte do
+        corte — do primeiro corte ao platinado.
+      </p>
+
+      <ul class="exp__lista">
+        <li>Ambiente limpo e agradável</li>
+        <li>Atendimento pontual</li>
+        <li>Corte infantil com paciência</li>
+      </ul>
+
+      <a
+        class="btn btn--ghost"
+        href={whatsappLink()}
+        target="_blank"
+        rel="noopener"
+      >
+        Agendar um horário
+        <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp {
+    position: relative;
+    padding-block: clamp(4rem, 9vw, 7.5rem);
+    background: var(--verde-escuro);
+    color: var(--osso);
+    overflow: hidden;
+  }
+
+  .exp::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(216, 255, 62, 0.08), transparent 45%);
+    pointer-events: none;
+  }
+
+  .exp__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .exp__foto {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--preto);
+  }
+
+  .exp__foto :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: contrast(1.05) saturate(0.92);
+  }
+
+  .exp__tag {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 2;
+    padding: 0.45rem 0.6rem;
+    background: var(--lima);
+    color: var(--preto);
+    font-family: var(--fonte-dados);
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .exp__corner {
+    position: absolute;
+    z-index: 2;
+    width: 26px;
+    height: 26px;
+    border-color: var(--lima);
+    border-style: solid;
+    border-width: 0;
+  }
+
+  .exp__corner--tl {
+    top: -1px;
+    left: -1px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+  }
+
+  .exp__corner--br {
+    bottom: -1px;
+    right: -1px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+  }
+
+  .exp h2 {
+    margin: 0.8rem 0 1.2rem;
+    font-family: var(--fonte-display);
+    font-size: var(--t-h2);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .exp p {
+    max-width: 50ch;
+    color: rgba(243, 241, 234, 0.74);
+  }
+
+  .exp__lista {
+    display: grid;
+    gap: 0.55rem;
+    margin: 1.8rem 0 2.2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .exp__lista li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--fonte-dados);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--osso);
+  }
+
+  .exp__lista li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--amarelo);
+  }
+
+  @media (max-width: 900px) {
+    .exp__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .exp__foto {
+      aspect-ratio: 4 / 5;
+      max-height: 70vh;
+    }
+  }
+</style>

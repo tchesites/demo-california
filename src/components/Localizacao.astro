@@ -1,0 +1,279 @@
+---
+import { negocio, whatsappLink } from '../data/negocio.js';
+---
+
+<section class="section local" id="onde-fica">
+  <div class="container local__grid">
+    <div class="local__copy" data-reveal>
+      <span class="kicker">Onde fica</span>
+      <h2>No Centro, fácil de chegar.</h2>
+      <p>
+        Na Rua Sete de Setembro, 480 — ponto de referência do bairro.
+        Domingo a casa descansa.
+      </p>
+
+      <div class="local__endereco">
+        <span class="local__rotulo">Endereço</span>
+        <address>{negocio.enderecoCompleto}</address>
+        <a href={negocio.googleMapsUrl} target="_blank" rel="noopener">
+          Abrir no Google Maps
+        </a>
+      </div>
+
+      <div class="local__horarios">
+        <span class="local__rotulo">Horários</span>
+        {negocio.horarios.map((h) => (
+          <span class="local__linha">
+            <span>{h.dias}</span>
+            <span>{h.horas}</span>
+          </span>
+        ))}
+      </div>
+
+      <div class="local__ctas">
+        <a
+          class="btn"
+          href={whatsappLink()}
+          target="_blank"
+          rel="noopener"
+        >
+          Chamar no WhatsApp
+          <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </a>
+        <a class="btn btn--ghost" href={negocio.telefoneLink}>
+          {negocio.telefoneDisplay}
+        </a>
+      </div>
+    </div>
+
+    <a
+      class="mapa"
+      href={negocio.googleMapsUrl}
+      target="_blank"
+      rel="noopener"
+      aria-label="Abrir a localização da Califórnia Barbearia no Google Maps"
+      data-reveal
+    >
+      <span class="mapa__pin" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"
+            stroke="currentColor"
+            stroke-width="1.6"
+          />
+          <circle cx="12" cy="10" r="2.6" fill="currentColor" />
+        </svg>
+      </span>
+      <span class="mapa__rua">Rua Sete de Setembro</span>
+      <span class="mapa__bairro">Centro · Canoas</span>
+      <span class="mapa__acao">
+        Abrir no Maps
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .local {
+    background: var(--preto);
+    border-top: 1px solid var(--linha);
+  }
+
+  .local__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .local h2 {
+    margin: 0.8rem 0 1rem;
+    font-family: var(--fonte-display);
+    font-size: var(--t-h2);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .local__copy > p {
+    max-width: 42ch;
+    color: var(--cinza);
+  }
+
+  .local__endereco,
+  .local__horarios {
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--linha-osso);
+  }
+
+  .local__rotulo {
+    font-family: var(--fonte-dados);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lima);
+  }
+
+  .local__endereco address {
+    max-width: 34ch;
+    font-style: normal;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .local__endereco a {
+    width: fit-content;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid var(--linha-forte);
+    font-family: var(--fonte-dados);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lima);
+  }
+
+  .local__linha {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 340px;
+    font-family: var(--fonte-dados);
+    font-size: 0.66rem;
+    color: var(--cinza);
+  }
+
+  .local__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 2rem;
+  }
+
+  .mapa {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    min-height: 420px;
+    padding: 1.4rem;
+    border: 1px solid var(--linha);
+    background-color: var(--carvao);
+    background-image:
+      linear-gradient(rgba(216, 255, 62, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(216, 255, 62, 0.08) 1px, transparent 1px);
+    background-size: 46px 46px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .mapa:hover {
+    border-color: var(--lima);
+  }
+
+  .mapa::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 62% 38%, rgba(216, 255, 62, 0.12), transparent 42%);
+    pointer-events: none;
+  }
+
+  .mapa__pin {
+    position: absolute;
+    left: 62%;
+    top: 38%;
+    width: 54px;
+    height: 54px;
+    color: var(--lima);
+    transform: translate(-50%, -50%);
+  }
+
+  .mapa__pin::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90px;
+    height: 90px;
+    border: 1px solid var(--linha-forte);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulso 3s ease-out infinite;
+  }
+
+  .mapa__rua {
+    position: relative;
+    font-family: var(--fonte-display);
+    font-size: 1.2rem;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .mapa__bairro {
+    position: relative;
+    font-family: var(--fonte-dados);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cinza);
+  }
+
+  .mapa__acao {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.6rem;
+    background: var(--lima);
+    color: var(--preto);
+    font-family: var(--fonte-dados);
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .mapa__acao svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  @keyframes pulso {
+    0% {
+      opacity: 0.7;
+      transform: translate(-50%, -50%) scale(0.55);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mapa__pin::after {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .local__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mapa {
+      min-height: 340px;
+    }
+  }
+</style>
