@@ -24,7 +24,7 @@ demonstrativo.
 - **Horário:** segunda a quarta, 9h às 19h; quinta e sexta, 9h às 19h30;
   sábado, 9h30 às 19h; domingo fechado
 - **WhatsApp:** (51) 90000-0000 (`wa.me/5551900000000`)
-- **Instagram:** [@california.barbearia](https://www.instagram.com/california.barbearia/)
+- **Instagram:** [@california.barbearia](https://www.instagram.com/tchesites/)
 - **Barbeiro:** Beto Ferraz (fictício)
 
 ## Estrutura
