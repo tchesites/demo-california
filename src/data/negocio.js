@@ -27,7 +27,8 @@ export const negocio = {
   telefoneLink: 'tel:+5551900000000',
   whatsappUrl: 'https://wa.me/5551900000000',
   instagram: '@california.barbearia',
-  instagramUrl: 'https://www.instagram.com/california.barbearia/',
+  // O @ exibido é fictício; o link aponta sempre para o Instagram da agência.
+  instagramUrl: 'https://www.instagram.com/tchesites/',
   googleMapsUrl:
     'https://www.google.com/maps/search/?api=1&query=Rua+Sete+de+Setembro+480+Centro+Canoas+RS',
   googleReviewsUrl:

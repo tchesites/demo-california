@@ -59,7 +59,7 @@ const checks = [
   ['home: CTA final', () => home.includes('Sai renovado')],
   ['home: WhatsApp', () => home.includes('wa.me/5551900000000')],
   ['home: links com base', () => home.includes('/demo-california/_astro/') && !home.includes('src="/_astro/')],
-  ['home: Instagram', () => home.includes('instagram.com/california.barbearia')],
+  ['home: Instagram', () => home.includes('instagram.com/tchesites')],
   ['home: logo', () => home.includes('/demo-california/logo.svg')],
   ['home: depoimentos em paper', () => home.includes('section paper depoimentos')],
   ['home: fallback sem JS', () => home.includes('<noscript>') && home.includes('[data-reveal]')],
